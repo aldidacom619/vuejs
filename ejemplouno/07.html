@@ -4,16 +4,15 @@
 	<title>VUEJS</title>
 </head>
 <body>
-	<main id= "app">
-		<h1>{{message}}</h1>
-		<input type="text" v-model= "message">
+	<main id= "app">		
 	</main>
+	<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 	<script src="vuejs/vue.js"></script>
 	<script >
 		const app = new Vue({
 			el:'#app',
 			data:{
-				message: 'hola mundo diego'
+				datos:''
 			}
 		})
 	</script>

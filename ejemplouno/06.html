@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">
+		<h1>FRUTAS FAVORITAS</h1>	
+		<ul>
+			<ol v-for="dato in datos">{{dato.id}}-{{dato.valor}}</ol>
+		</ul>	
+		<br>
+		<select name="" id = "" v-model="datos.id"> 
+			<option v-for="dato in datos" :value="dato.id">{{dato.valor}}</option>
+		</select>
+		<br>
+		<br>
+		<input type="text" :value = "datos.id">
+	</main>
+	<script src="vuejs/vue.js"></script>
+	<script >
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:[
+					{valor:'uvas',id:1},
+					{valor:'manzanas',id:2},
+					{valor:'sandias',id:3},
+					{valor:'mangos',id:4}
+				]
+			}
+		})
+	</script>
+</body>
+</html>

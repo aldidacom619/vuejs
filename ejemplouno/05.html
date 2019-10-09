@@ -4,16 +4,17 @@
 	<title>VUEJS</title>
 </head>
 <body>
-	<main id= "app">
-		<h1>{{message}}</h1>
-		<input type="text" v-model= "message">
+	<main id= "app">	
+		<H1 v-text="texto"></H1>	
+		<div v-html="codigohtml"></div>
 	</main>
 	<script src="vuejs/vue.js"></script>
 	<script >
 		const app = new Vue({
 			el:'#app',
 			data:{
-				message: 'hola mundo diego'
+				texto:'SOY UN TEXTO INYECTADO CON VUE',
+				codigohtml:'<H1><i>soy un texto html</i></H1>'
 			}
 		})
 	</script>

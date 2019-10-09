@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">		
+		<input type="number" v-model="datos" >
+		<h1 v-if="datos == 1">el dia es muy nublado</h1>
+		<h1 v-else-if = "datos==2">el dia esta muy lluvioso</h1>
+		<h1 v-else>el dia esta muy soleado</h1>
+	</main>
+	<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+	<script src="vuejs/vue.js"></script>
+	<script >
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:0
+			}
+		})
+	</script>
+</body>
+</html>
