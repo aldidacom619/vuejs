@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<div id= "app">		
+		<h1>INSTANCIA 1</h1>
+		<mi-encabezado titulo="Curso" subtitulo="desarrollo web con vue.js" :contenido="datos" alineacion="justify"></mi-encabezado>
+		
+		<br><br><br>
+		<mi-tabla :lista="personas"></mi-tabla>
+
+
+		<br><br><br>
+		<mi-tabla :lista="peoples"></mi-tabla>
+		
+
+
+	</div>
+	<hr>
+	<div id="app2">
+		<h1>INSTANCIA 2</h1>
+		<mi-tabla :lista="personas"></mi-tabla>
+
+		<mis-peliculas :lista="peliculas"></mis-peliculas>
+	</div>
+
+	<template id="tablaPersonas">
+		<div>
+ 				<table>
+					<th>Nombre</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<tr v-for="dato in lista">
+						<td>{{dato.nombre}}</td>
+						<td>{{dato.direccion}}</td>
+						<td>{{dato.telefono}}</td>
+					</tr>
+				</table>
+ 			</div>
+ 	</template>
+
+ 	<script type="text/template" id="tablaPersonas2">
+ 		<div>
+ 				<table>
+					<th>Nombre</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<tr v-for="dato in lista">
+						<td>{{dato.nombre}}</td>
+						<td>{{dato.direccion}}</td>
+						<td>{{dato.telefono}}</td>
+					</tr>
+				</table>
+ 			</div>
+
+ 	</script>
+	
+	<script src="vuejs/vue.js"></script>
+	<script >
+
+ 		Vue.component('mi-encabezado',{
+ 			props:['titulo','subtitulo','contenido','alineacion'],
+ 			template:`
+ 			<div style="width:300px;">
+ 				<h1>{{titulo}}</h1>
+ 				<h4>{{subtitulo}}</h4>
+ 				<p :align="alineacion">{{contenido}}</p>
+ 			</div>
+ 			`
+ 		})
+
+ 		Vue.component('mi-tabla',{
+ 			props:['lista'],
+ 			//template:'#tablaPersonas'
+ 			template:'#tablaPersonas2'
+ 		})
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:'A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no margin by default, so use spacing utilities as needed.',
+				personas:[
+					{nombre:'Pedro', direccion:'jardines', telefono:78720504},
+					{nombre:'Diego', direccion:'jardines', telefono:78720504},
+					{nombre:'Alvaro', direccion:'jardines', telefono:78720504}
+				],
+				peoples:[
+					{nombre:'jack', direccion:'santiago', telefono:78720504},
+					{nombre:'maria', direccion:'santiago', telefono:78720504},
+					{nombre:'robert', direccion:'santiago', telefono:78720504}
+				]
+			}
+		})
+		const misPeliculas={
+			props:['lista'],
+ 			template:`
+ 			<div>
+ 				<table>
+					<th>Titulo</th>
+					<th>Genero</th>
+					<tr v-for="dato in lista">
+						<td>{{dato.titulo}}</td>
+						<td>{{dato.genero}}</td>
+					</tr>
+				</table>
+ 			</div>
+ 			`
+
+		}
+		const app2 = new Vue({
+			el:'#app2',
+			data:{
+				datos:'A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no margin by default, so use spacing utilities as needed.',
+				personas:[
+					{nombre:'Pedro', direccion:'jardines', telefono:78720504},
+					{nombre:'Diego', direccion:'jardines', telefono:78720504},
+					{nombre:'Alvaro', direccion:'jardines', telefono:78720504}
+				],
+				peliculas:[
+					{titulo:'ant man', genero:'ficcion'},
+					{titulo:'harry potter', genero:'ficcion'},
+					{titulo:'titanic', genero:'drama'},
+					{titulo:'la casa de papel', genero:'suspenso'},
+					{titulo:'el nucleo', genero:'accion'}
+				]
+
+			},
+			components:{
+				'mis-peliculas':misPeliculas
+			}
+		})
+	</script>
+</body>
+</html>

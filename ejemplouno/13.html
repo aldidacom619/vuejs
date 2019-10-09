@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">		
+		<mi-encabezado></mi-encabezado>
+		<mi-encabezado></mi-encabezado>
+		<mi-encabezado></mi-encabezado>
+		<mi-encabezado></mi-encabezado>
+
+	</main>
+	
+	<script src="vuejs/vue.js"></script>
+	<script >
+
+ 		Vue.component('mi-encabezado',{
+ 			template:`
+ 			<div>
+ 				<h1>Titulo</h1>
+ 				<h4>subTitulo</h4>
+ 			</div>
+ 			`
+ 		})
+
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:''
+			}
+		})
+	</script>
+</body>
+</html>

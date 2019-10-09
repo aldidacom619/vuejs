@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+	<style >
+		.femenino{
+			color: pink;
+			font-family: 'Lucida Sans';
+			font-size: 25 px;
+			font-weight: bolder;
+		}
+		.masculino{
+			color: blue;
+			font-family: 'Times New Roman', Times,serif;
+			font-size: 15px;
+		}
+	</style>
+</head>
+<body>
+	<main id= "app">		
+		<h2>Escribe tu edad</h2>
+		<input type="number" v-model = "edad">
+		<div v-html="rangoEdad"></div><br>
+		<label :class = "genero">{{concatenacion}}</label><br>
+		<input type="radio" v-model="gen" value="f">Femenino
+		<input type="radio" v-model="gen" value="m">Masculino
+		<br>
+		<p :style="estilo">
+				A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no margin by default, so use spacing utilities as needed.
+		</p>	
+	</main>
+	<script src="vuejs/vue.js"></script>
+	<script >
+		const app = new Vue({
+			el:'#app',
+			data:{
+				edad:0,
+				nombre:'Pedro',
+				apellidoP:'Mendez',
+				apellidoM:'Jardinez',
+				gen:'f'
+			},
+			computed:{
+				rangoEdad: function(){
+					return this.edad >= 18 ? '<h1>Eres Mayor de edad</h1>' : '<h2>Eres menor de edad<h/2>';
+				},
+				concatenacion: function(){
+					return this.nombre+ ' '+ this.apellidoP+ ' '+ this.apellidoM;
+				},
+				genero:function(){
+					return this.gen =='f' ? 'femenino': 'masculino';
+				},
+				estilo: function(){
+					//width: 300px; font-size: 20px; color: chocolate; text-align: justify;
+					return{
+						width:'300px',
+						fontSize:'20px',
+						color:'chocolate',
+						textAlign:'justify'
+					}	
+				}
+			}
+		})
+	</script>
+</body>
+</html>

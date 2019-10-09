@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">	
+	<h1>Calculadora</h1>	
+	<input type="number" v-model='v1' placeholder="Valor 1">
+	<input type="number" v-model='v2' placeholder="Valor 2" @keyup="operacion"><br>
+	<input type="radio" v-model="ope" value="suma">Suma
+	<input type="radio" v-model="ope" value="resta">Resta
+	<input type="radio" v-model="ope" value="multi">Multiplicacion
+	<input type="radio" v-model="ope" value="div">Division
+	<br>
+	<button v-on:click="operacion">Calcular</button>
+	<br>
+	<label for="">{{res}}</label>
+	</main>
+	<script src="vuejs/vue.js"></script>
+	<script >
+		const app = new Vue({
+			el:'#app',
+			data:{
+				v1:0,
+				v2:0,
+				res:0,
+				ope:'suma'
+			},
+			methods:{
+				operacion:function(){
+					switch (this.ope){
+						case 'suma':
+							this.res = parseInt(this.v1) + parseInt(this.v2);
+							break;
+						case 'resta':
+							this.res = parseInt(this.v1) - parseInt(this.v2);
+							break;
+						case 'multi':
+							this.res = parseInt(this.v1) * parseInt(this.v2);
+							break;
+						case 'div':
+							this.res = parseInt(this.v1) / parseInt(this.v2);
+							break;
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

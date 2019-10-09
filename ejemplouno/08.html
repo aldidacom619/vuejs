@@ -2,13 +2,28 @@
 <html>
 <head>
 	<title>VUEJS</title>
+	<style >
+		.femenino{
+			color: pink;
+			font-family: 'Lucida Sans';
+			font-size: 25 px;
+			font-weight: bolder;
+		}
+		.masculino{
+			color: blue;
+			font-family: 'Times New Roman', Times,serif;
+			font-size: 15px;
+		}
+	</style>
 </head>
 <body>
 	<main id= "app">		
 		<h2>Escribe tu edad</h2>
 		<input type="number" v-model = "edad">
 		<div v-html="rangoEdad"></div><br>
-		<h3>{{concatenacion}}</h3>
+		<label :class = "genero">{{concatenacion}}</label><br>
+		<input type="radio" v-model="gen" value="f">Femenino
+		<input type="radio" v-model="gen" value="m">Masculino
 	</main>
 	<script src="vuejs/vue.js"></script>
 	<script >
@@ -18,7 +33,8 @@
 				edad:0,
 				nombre:'Pedro',
 				apellidoP:'Mendez',
-				apellidoM:'Jardinez'
+				apellidoM:'Jardinez',
+				gen:'f'
 			},
 			computed:{
 				rangoEdad: function(){
@@ -26,6 +42,9 @@
 				},
 				concatenacion: function(){
 					return this.nombre+ ' '+ this.apellidoP+ ' '+ this.apellidoM;
+				},
+				genero:function(){
+					return this.gen =='f' ? 'femenino': 'masculino';
 				}
 			}
 		})

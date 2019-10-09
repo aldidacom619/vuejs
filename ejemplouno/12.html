@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">	
+	<h1>Calculadora</h1>	
+	<input type="number" v-model='v1' placeholder="Valor 1">
+	<input type="number" v-model='v2' placeholder="Valor 2" @keyup="operacion"><br>
+	<input type="radio" v-model="ope" value="suma">Suma
+	<input type="radio" v-model="ope" value="resta">Resta
+	<input type="radio" v-model="ope" value="multi">Multiplicacion
+	<input type="radio" v-model="ope" value="div">Division
+	<br>
+	<button v-on:click="operacion">Calcular</button>
+	<br>
+	<label for="">{{res}}</label>
+	<br>
+	<button @click="saludo('hola como estas')">Saludo</button><br>
+	<input type="text" @keyup.left="saludo(dato)" ><br><br>
+	<!-- enter, tab, delete, esc, space, left, up,down, right-->
+	<input type="text" @keyup.enter="saludo(dato)" v-model='dato' placeholder="Evento con combinacion de teclas">
+	<br><br><br><br><br>
+	<h1>TODOLIST</h1>
+	<form @submit.prevent="agregarPersonas">
+		<input type="text" v-model = "persona"><br><br>
+		<input type="submit" value = "Agregar">
+	</form>
+	<br>
+	<ul>
+		<li v-for="per in personas">{{per}}</li>
+	</ul>
+
+	</main>
+	<script src="vuejs/vue.js"></script>
+	<script >
+		const app = new Vue({
+			el:'#app',
+			data:{
+				v1:0,
+				v2:0,
+				res:0,
+				ope:'suma',
+				dato:'',
+				personas:['Maria','Pedro','Luis'],
+				persona:''
+			},
+			methods:{
+				operacion:function(){
+					switch (this.ope){
+						case 'suma':
+							this.res = parseInt(this.v1) + parseInt(this.v2);
+							break;
+						case 'resta':
+							this.res = parseInt(this.v1) - parseInt(this.v2);
+							break;
+						case 'multi':
+							this.res = parseInt(this.v1) * parseInt(this.v2);
+							break;
+						case 'div':
+							this.res = parseInt(this.v1) / parseInt(this.v2);
+							break;
+					}
+				},
+				saludo:function(mensaje){
+					alert(mensaje);
+					/*if(event){
+						alert("Evento ejecutado");
+					}*/
+				},
+				agregarPersonas: function(){
+					if(!this.persona == '')
+					{
+						//this.personas.push(this.persona)
+						this.personas.unshift(this.persona)
+						this.persona = ''
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>
