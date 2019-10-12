@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS componente a componente</title>
+</head>
+<body>
+	<main id= "app">	
+
+		<boton ></boton>
+		<mensaje></mensaje>
+
+	</main>
+	
+	<template id="miBoton">
+		<button @click = "saluda">click aqui</button>		
+	</template>
+
+	<template id="miMensaje">
+		<h1>{{mensaje}}</h1>
+	</template>
+
+	<script src="vuejs/vue.js"></script>
+	<script >
+
+		Vue.component('boton',{ //componente A
+			template: '#miBoton',
+			data(){
+				return{
+					dato: 'Hola soy el dato de mi primer componente',
+					parametro:'ejecutarlo en el componente B'
+				}
+			},
+			methods:{
+				saluda:function(){
+					alert(this.dato)
+					puente.$emit('mi-evento', this.parametro)
+				}
+			}
+ 		})
+ 		Vue.component('mensaje',{ //componente B
+			template: '#miMensaje',
+			data(){
+				return{
+					mensaje: 'Hola soy el segundo componente'
+				}
+			},
+			created(){
+				puente.$on('mi-evento', function(parametro){
+					alert(parametro)
+				})
+			}
+ 		})
+		const puente = new Vue()
+
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:''
+			}
+			
+		})
+	</script>
+</body>
+</html>

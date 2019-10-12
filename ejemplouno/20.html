@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">	
+
+		<boton @mi-evento="saluda2"></boton>
+
+	</main>
+	
+	<template id="miBoton">
+		<button @click = "saluda">click aqui</button>		
+	</template>
+
+	<script src="vuejs/vue.js"></script>
+	<script >
+
+		Vue.component('boton',{
+			template: '#miBoton',
+			data(){
+				return{
+					dato: 'Hola soy el dato de mi propio componente',
+					parametro:'hola como'
+				}
+			},
+			methods:{
+				saluda:function(){
+					alert(this.dato)
+					this.$emit('mi-evento', this.parametro)
+				}
+			}
+ 		})
+		const app = new Vue({
+			el:'#app',
+			data:{
+				datos:'estas amigo'
+			},
+			methods:{
+				saluda2:function(parametro){
+					alert(parametro+ ' '+this.datos)
+				}
+			}
+		})
+	</script>
+</body>
+</html>

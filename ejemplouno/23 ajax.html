@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS</title>
+</head>
+<body>
+	<main id= "app">	
+		
+		<table>
+			<th>NOMBRE</th>
+			<th>EMAIL</th>
+			<th>CIUDAD</th>
+			<th>LOCALIZACION</th>
+			<tr v-for= "item in datos">
+				<td>{{item.name}}</td>
+				<td>{{item.email}}</td>
+				<td>{{item.address.city}}</td>
+				<td>Lat: {{item.address.geo.lat}} Lng: {{item.address.geo.lng}}</td>				
+			</tr>
+		</table>
+
+		
+		<br>
+		<pre>
+			{{$data | json }}
+		</pre>
+	</main>	
+	<script src="vuejs/vue.js"></script>
+	<script src="vuejs/ajax.js"></script>
+	 <script >
+	 	const url = 'https://jsonplaceholder.typicode.com/users'
+	 	const app = new Vue({
+			el:'#app',
+			data:{
+				datos:[]
+			},
+			methods:{
+				usuarios:function(){
+					this.$http.get(url).then(function(respuesta){
+						this.datos = respuesta.data
+					})
+				}
+			},
+			created(){
+				this.usuarios()
+			}
+		})
+	</script>
+</body>
+</html>

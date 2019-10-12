@@ -4,16 +4,30 @@
 	<title>VUEJS</title>
 </head>
 <body>
-	<main id= "app">		
+	<main id= "app">	
+		<me-gusta ><me-gusta>
 	</main>
-	<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+	
+	<template id="megusta">
+		<button @click="incremento">{{total}} Me gusta</button>
+	</template>
 	<script src="vuejs/vue.js"></script>
 	<script >
-		const app = new Vue({
-			el:'#app',
-			data:{
-				datos:''
+		Vue.component('me-gusta',{
+			template:'#megusta',
+			data:function(){
+				return {
+					total:0
+				}
+			},
+			methods:{
+				incremento:function(){
+					this.total += 1
+				}
 			}
+ 		})
+		const app = new Vue({
+			el:'#app'			
 		})
 	</script>
 </body>

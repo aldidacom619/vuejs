@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUEJS FILTROS CON AJAX</title>
+</head>
+<body>
+	<main id= "app">	
+		<br><br><br><br><br><br>
+		<input type="text" v-model="buscar" placeholder="Buscador" size="50">
+		<br><br>
+		<table border="1">
+			<!--<th v-for="campo in campos">{{campo[0].toUpperCase() + campo.slice(1)}}</th> otra forma de poner en mayuscula la primera letra--> 
+			<th v-for="campo in campos">{{campo | capitalize}}</th>
+			<tr v-for= "item in datosFiltrados">
+				<td>{{item.name.toUpperCase()}}</td>
+				<td>{{item.email.toLowerCase()}}</td>
+				<td>{{item.address.city}}</td>
+				<td>Lat: {{item.address.geo.lat}} Lng: {{item.address.geo.lng}}</td>
+				<td>{{'$'+ precio.toFixed(2)}}</td>
+				<td>{{texto | verMas(15,' ver mas...') | capitalize}}</td>
+			</tr>
+		</table>
+
+		
+		<br>
+		
+	</main>	
+	<script src="vuejs/vue.js"></script>
+	<script src="vuejs/ajax.js"></script>
+	 <script >
+	 	Vue.filter('capitalize', function(valor){
+	 		return valor[0].toUpperCase()+valor.slice(1)
+	 	})
+
+	 	Vue.filter('verMas', function(valor,tamano,sufijo){
+	 		return valor.substring(0,tamano) + sufijo
+	 	})
+	 	const url = 'https://jsonplaceholder.typicode.com/users'
+	 	const app = new Vue({
+			el:'#app',
+			data:{
+				datos:[],
+				campos:['nombre','email','ciudad','localizacion','precio','descripcion'],
+				precio:1234,
+				texto:'a card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes',
+				buscar:''
+			},
+			methods:{
+				usuarios:function(){
+					this.$http.get(url).then(function(respuesta){
+						this.datos = respuesta.data
+					})
+				}
+			},
+			created(){
+				this.usuarios()
+			},
+			computed:{
+				datosFiltrados:function(){
+					return this.datos.filter((filtro)=>{
+						return filtro.name.toUpperCase().match(this.buscar.toUpperCase()) || filtro.email.toUpperCase().match(this.buscar.toUpperCase())
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

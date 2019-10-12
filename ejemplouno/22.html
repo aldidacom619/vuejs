@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ciclo de vida de instancia</title>
+</head>
+<body>
+
+    <main id='app'>
+        
+    </main>
+
+
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                datos:''
+            },
+            beforeCreate(){ //HOOKS
+                alert('ejecutando beforeCreate')
+                // ejecutamos codigo antes de que cargen los eventos
+            },
+            created(){
+                alert('ejecutando create')
+                //ejecuta de manera asincrona antes de que se ejecute la plantilla
+            },
+            beforeMount(){
+                alert('ejecutando beforeMounted')
+                // se ejecuta antes de que se incialize el dom
+            },
+            mounted(){
+                alert('ejecutando mounted')
+
+            },
+            beforeUpdate(){
+                alert('ejecutando beforeUpdate')
+               // si tenemos informacion que va a cambiar en el dom
+            },
+            updated(){
+                alert('ejecutando update')
+                //cuando se haya hecho la actualizacion
+            },
+            beforeDestroy(){
+                alert('ejecutando beforeDestroy')
+               // antes de destruir la instancia
+            },
+            destroyed(){
+                alert('ejecutando destroyed')
+               // se ejecuta cuando se destruyo la instancia
+            },
+            
+
+        })
+    </script>
+</body>
+</html>
